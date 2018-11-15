@@ -9,6 +9,8 @@ mongoose.connect('mongodb://localhost:27017/budget', { useNewUrlParser: true })
   .catch(err => console.error(`Error connecting to the DB, ${err}`))
 
 const budgetsRoute = require('./budget/routes/budget.js')
+const expensesRoute = require('./budget/routes/expense')
+const categoriesRoute = require('./budget/routes/category')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -18,6 +20,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/budgets', budgetsRoute)
+app.use('/expenses', expensesRoute)
+app.use('/categories', categoriesRoute)
 
 
 app.post('/categories', (req, res) => {
